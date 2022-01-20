@@ -16,7 +16,7 @@ export default {
     },
     delay: {
       type: Number,
-      default: 500,
+      default: 2000,
     },
   },
 
@@ -31,18 +31,19 @@ export default {
   },
 
   watch: {
-    show(newshow, oldshow) {
-      console.log("old value" + newshow + "new value " + oldshow);
+    show(newshow) {
+      console.log("new value" + newshow);
       if (newshow) {
         // Start show loader timeout
-
+        this.showLoader = true;
         this.timeout = setTimeout(() => {
-          this.showLoader = true;
+          this.showLoader = false;
         }, this.delay);
-      } else {
-        clearTimeout(this.timeout);
-        this.showLoader && (this.showLoader = false);
       }
+      //  else {
+      //   clearTimeout(this.timeout);
+      //   this.showLoader && (this.showLoader = false);
+      // }
     },
   },
 

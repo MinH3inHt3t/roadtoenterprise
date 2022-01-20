@@ -1,14 +1,14 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
   <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
-  <!-- <AnimalApiExample /> -->
+  <AnimalApiExample />
   <SearchMealExample />
   <!-- <ToggleExample /> -->
   <TagsExample />
 </template>
 
 <script>
-// import AnimalApiExample from "./views/AnimalApiExample.vue";
+import AnimalApiExample from "./views/AnimalApiExample.vue";
 import SearchMealExample from "./views/SearchMealExample.vue";
 // import ToggleExample from "./views/ToggleExample.vue";
 import TagsExample from "./views/TagsExample.vue";
@@ -17,7 +17,7 @@ import TagsExample from "./views/TagsExample.vue";
 export default {
   name: "App",
   components: {
-    // AnimalApiExample,
+    AnimalApiExample,
     SearchMealExample,
     // ToggleExample,
     TagsExample,

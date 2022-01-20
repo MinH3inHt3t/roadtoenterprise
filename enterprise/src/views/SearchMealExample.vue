@@ -22,7 +22,7 @@
 </template>
 
 <script>
-// import { abortable, didAbort } from "@/api/api";
+import { abortable, didAbort } from "@/api/api";
 import { searchMeals } from "@/api/mealApi";
 import { withAsync } from "@/helpers/withAsync";
 export default {
@@ -47,32 +47,32 @@ export default {
       // Abort previous request
       this.$options.abort?.();
 
-      const { response, error } = await withAsync(searchMeals, q, {
-        abort: (abort) => (this.$options.abort = abort),
-      });
-      if (error) {
-        console.log("error", error);
-        if (error.aborted) {
-          console.warn("Aborted!");
-        }
-        return;
-      }
-      //   // Get a new abortable. Axios will create new CancelToken
-      //   const { abort, fn: abortableSearchMeals } = abortable(searchMeals);
-      //   // Assign abort function on the instance so it can be
-      //   // called when initSearchMeals is called again
-      //   this.$options.abort = abort;
-      // Initialise search
-      //   const { response, error } = await withAsync(abortableSearchMeals, q, {});
-      //   if (error) {
-      //     // Log the error
-      //     console.log("error", error);
-      //     // Show a warning in the console when request was aborted
-      //     if (didAbort(error)) {
-      //       console.warn("Aborted!");
-      //     }
-      //     return;
+      // const { response, error } = await withAsync(searchMeals, q, {
+      //   abort: (abort) => (this.$options.abort = abort),
+      // });
+      // if (error) {
+      //   console.log("error", error);
+      //   if (error.aborted) {
+      //     console.warn("Aborted!");
       //   }
+      //   return;
+      // }
+        // Get a new abortable. Axios will create new CancelToken
+        const { abort, fn: abortableSearchMeals } = abortable(searchMeals);
+        // Assign abort function on the instance so it can be
+        // called when initSearchMeals is called again
+        this.$options.abort = abort;
+      //Initialise search
+        const { response, error } = await withAsync(abortableSearchMeals, q, {});
+        if (error) {
+          // Log the error
+          console.log("error", error);
+          // Show a warning in the console when request was aborted
+          if (didAbort(error)) {
+            console.warn("Aborted!");
+          }
+          return;
+        }
       this.meals = response.data.meals;
     },
   },
