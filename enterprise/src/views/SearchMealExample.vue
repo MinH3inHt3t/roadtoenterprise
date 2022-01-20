@@ -57,22 +57,22 @@ export default {
       //   }
       //   return;
       // }
-        // Get a new abortable. Axios will create new CancelToken
-        const { abort, fn: abortableSearchMeals } = abortable(searchMeals);
-        // Assign abort function on the instance so it can be
-        // called when initSearchMeals is called again
-        this.$options.abort = abort;
+      // Get a new abortable. Axios will create new CancelToken
+      const { abort, fn: abortableSearchMeals } = abortable(searchMeals);
+      // Assign abort function on the instance so it can be
+      // called when initSearchMeals is called again
+      this.$options.abort = abort;
       //Initialise search
-        const { response, error } = await withAsync(abortableSearchMeals, q, {});
-        if (error) {
-          // Log the error
-          console.log("error", error);
-          // Show a warning in the console when request was aborted
-          if (didAbort(error)) {
-            console.warn("Aborted!");
-          }
-          return;
+      const { response, error } = await withAsync(abortableSearchMeals, q, {});
+      if (error) {
+        // Log the error
+        console.log("error", error);
+        // Show a warning in the console when request was aborted
+        if (didAbort(error)) {
+          console.warn("Aborted!");
         }
+        return;
+      }
       this.meals = response.data.meals;
     },
   },

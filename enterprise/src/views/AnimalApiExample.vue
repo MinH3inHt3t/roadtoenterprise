@@ -18,13 +18,13 @@
       <p>Loading Cat from Lazy Loading</p>
     </BaseLazyLoad>
     <div v-show="fetchKittyStatusPending">
-        <p>Loading Cat from div</p>
+      <p>Loading Cat from div</p>
     </div>
     <p v-if="fetchKittyStatusError">There was a problem.</p>
     <div v-if="true">
       <img :src="catdata" alt="Cat image" />
     </div>
-    <button @click="exec">GetCat </button>
+    <button @click="exec">GetCat</button>
   </div>
 </template>
 <script>
@@ -55,17 +55,18 @@ export default {
     // const catRes = useApi("fetchKitty", fetchKitty, concatUrl);
     // const catdata = catRes.data;
 
-    const { data: Cdata, catStatus, catError, exec, ...catStatusObj } = useApi(
-      "fetchKitty",
-      fetchKitty,concatUrl
-    );
+    const {
+      data: Cdata,
+      catStatus,
+      catError,
+      exec,
+      ...catStatusObj
+    } = useApi("fetchKitty", fetchKitty, concatUrl);
 
-    
     const catdata = Cdata;
     dogRes.exec();
     // catRes.exec();
     exec();
-    
 
     return {
       data,
@@ -73,7 +74,6 @@ export default {
       catdata,
       exec,
       // ...statusobj,
-
 
       catStatus,
       catError,
