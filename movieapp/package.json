@@ -10,6 +10,8 @@
 		"hooper": "^0.3.4",
 		"tw-elements": "^1.0.0-alpha8",
 		"vue": "^3.2.25",
+		"axios": "^0.19.2",
+		"lodash-es": "^4.17.21",
 		"vue-router": "^4.0.0-0"
 	},
 	"devDependencies": {

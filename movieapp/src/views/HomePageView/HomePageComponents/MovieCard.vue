@@ -21,7 +21,9 @@
       </div>
 
       <div class="px-2 py-4">
-        <h1 class="text-[#CCD3DC] font-extrabold">{{ movieName }}</h1>
+        <h1 class="text-[#CCD3DC] font-extrabold truncate w-48">
+          {{ movieName }}
+        </h1>
         <h3 class="text-[#CCD3DC] text-sm">{{ movieDate }}</h3>
       </div>
     </div>

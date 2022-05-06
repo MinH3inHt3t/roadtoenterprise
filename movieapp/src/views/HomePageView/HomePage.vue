@@ -149,15 +149,11 @@
           <div id="" class="flex flex-wrap p-0 gap-5">
             <!--replve here -->
             <MovieCard
-              movieName="Commando"
-              movieImage="https://foumovies.one/wp-content/uploads/2022/01/mvCVaas7FkRV8uvyIJl1ANdT28k-185x278.jpg"
-              movieDate="2022"
-            />
-
-            <MovieCard
-              movieName="Matrix"
-              movieImage="https://foumovies.one/wp-content/uploads/2021/12/8c4a8kE7PizaGQQnditMmI1xbRp-185x278.jpg"
-              movieDate="2022"
+              v-for="movie in data.results"
+              :key="movie.id"
+              :movieName="movie.title"
+              :movieImage="imageUrl + movie.poster_path"
+              :movieDate="movie.release_date"
             />
 
             <div
@@ -308,8 +304,34 @@
 </template>
 
 
-<script setup >
+<script  >
 import MovieCard from "./HomePageComponents/MovieCard.vue";
+import { useApi } from "../../api/composables/useApi";
+import { fetchMovie } from "../../api/movieApi";
+
+export default {
+  components: {
+    MovieCard,
+  },
+
+  setup() {
+    const imageUrl = "https://image.tmdb.org/t/p/w300";
+
+    const { data, movieStatus, movieError, exec, ...movieStatusObj } = useApi(
+      "fetchMovie",
+      fetchMovie
+    );
+    exec();
+    return {
+      data,
+      movieStatus,
+      movieError,
+      exec,
+      ...movieStatusObj,
+      imageUrl,
+    };
+  },
+};
 </script>
 
 <style lang="">

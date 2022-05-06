@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomePage from '../views/HomePageView/HomePage.vue'
+import MovieDetail from '../views/MovieDetailView/MovieDetail.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -13,6 +14,13 @@ const router = createRouter({
             name: "HomePage",
             component: HomePage,
         },
+
+        {
+            path: "/movieDetail",
+            name: "MovieDetail",
+            component: MovieDetail,
+        },
+
 
         // {
         //     path: "/chat",
